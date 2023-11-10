@@ -1,0 +1,324 @@
+html {
+  position: relative;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  position: relative;
+  overflow-x: hidden;
+  min-width: 320px;
+  height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+  font-size: 20px;
+  line-height: 1.21;
+  color: #000;
+  background: #9fa7ff url("../img/bg.jpg");
+  display: flex;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+svg {
+  max-height: 100%;
+}
+
+button {
+  padding: 0;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+p,
+figure,
+fieldset {
+  margin: 0;
+}
+
+iframe {
+  border: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.visually-hidden {
+  position: fixed;
+  transform: scale(0);
+}
+
+.container {
+  position: relative;
+  max-width: 1220px;
+  width: 100%;
+  margin: auto;
+  border-radius: 36px;
+  border: 2px solid #fff;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 4%;
+}
+
+.finance {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+}
+
+.finance__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.finance__logo {
+  max-width: 200px;
+}
+
+.finance__report {
+  border-radius: 60px;
+  border: 2px solid transparent;
+  background-color: #0038ff;
+  color: #ffffff;
+  padding: 12px 32px;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.finance__report:hover {
+  background-color: #fff;
+  color: #0038ff;
+  border-color: #0038ff;
+}
+
+.finance__details {
+  display: flex;
+  flex-direction: column;
+  padding: 34px 0;
+  gap: 12px;
+}
+
+.finance__input {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid #fff;
+  background: #fff;
+  padding: 16px 20px;
+}
+
+.finance__description {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid #fff;
+  background: #fff;
+  min-height: 150px;
+  padding: 16px 20px;
+  resize: vertical;
+}
+
+.finance__balance {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.finance__button {
+  color: #fff;
+}
+
+.finance__button:hover {
+  color: #0038ff;
+}
+
+.finance__amount {
+  color: #0038ff;
+  font-size: 50px;
+  font-weight: 600;
+}
+
+.report {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 560px;
+  overflow-y: auto;
+  width: 94%;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.report__open {
+  display: block;
+}
+
+.report__container {
+  position: relative;
+  background: #f9f9f9;
+  border-radius: 20px;
+  min-width: 920px;
+}
+
+.report__title {
+  color: #0038ff;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.report__dates {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.report__date input {
+  border-radius: 12px;
+  border: 2px solid #0038ff;
+  padding: 12px 16px;
+}
+
+.report__button {
+  background-color: #0038ff;
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 12px 30px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.report__button:hover {
+  background-color: #ffffff;
+  color: #0038ff;
+  border-color: #9fa7ff;
+}
+
+.report__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  height: 30px;
+  width: 30px;
+  line-height: 26px;
+  text-align: center;
+  background-color: #0038ff;
+  color: #ffffff;
+  border-radius: 15px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.report__close:hover {
+  background-color: #ffffff;
+  color: #0038ff;
+  border-color: #0038ff;
+}
+
+.report__table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.report__header-cell {
+  background-color: #0038ff;
+  color: #ffffff;
+  padding: 10px 15px;
+  border-right: 2px solid #ffffff;
+}
+
+.report__header-cell:last-child {
+  border-right: none;
+}
+
+.report__row {
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.report__row:last-child {
+  border-bottom: none;
+}
+
+.report__cell {
+  padding: 10px 15px;
+  color: #333;
+}
+
+.report__button_table {
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.report__action-cell {
+  padding: 10px 15px;
+  text-align: center;
+}
+
+.report__add-button {
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #0038ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  display: block;
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.report__add-button:hover {
+  background-color: #0026b3;
+}
+
+.report__chart {
+  position: relative;
+  height: 40%;
+  width: 100%;
+}
