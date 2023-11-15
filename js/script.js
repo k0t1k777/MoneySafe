@@ -5,7 +5,7 @@ const financeAmount = document.querySelector(".finance__amount");
 const financeReport = document.querySelector(".finance__report");
 const report = document.querySelector(".report");
 
-let amount =   0;
+let amount = 0;
 financeAmount.textContent = amount;
 
 financeForm.addEventListener("submit", (evt) => {
@@ -26,7 +26,14 @@ financeForm.addEventListener("submit", (evt) => {
   financeAmount.textContent = `${amount.toLocaleString()} руб.`;
 });
 
-
 financeReport.addEventListener("click", () => {
-  report.classList.add("report__open")
+  report.classList.add("report__open");
+  document.addEventListener("click", ({ target }) => {
+    if (
+      target.closest(".report__close") ||
+      (!target.closest(".report") && target !== financeReport)
+    ) {
+      report.classList.remove("report__open");
+    }
+  });
 });
