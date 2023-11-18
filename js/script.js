@@ -1,5 +1,7 @@
 import { convertStringNumber } from "./convertStringNumber.js";
-const API_URL = "https://substantial-heady-sort.glitch.me/api";
+import { getData } from "./api.js";
+import { reformatDate } from "./reformatDate.js";
+import { OverlayScrollbars } from "./";
 
 const financeForm = document.querySelector(".finance__form");
 const financeAmount = document.querySelector(".finance__amount");
@@ -15,34 +17,16 @@ const reportDates = document.querySelector(".report__dates");
 let amount = 0;
 financeAmount.textContent = amount;
 
-const getData = async (url) => {
-  try {
-    const response = await fetch(`${API_URL}${url}`);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return await response.json();
-  } catch (error) {
-    console.error("Ошибка при получении данных", error);
-    throw error;
-  }
-};
-
 financeForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
-
   const typeOperation = evt.submiter.dataset.typeOperation;
-
   const changeAmount = Math.abs(convertStringNumber(financeForm.amount.value));
-
   if (typeOperation === "income") {
     amount += changeAmount;
   }
-
   if (typeOperation === "expenses") {
     amount -= changeAmount;
   }
-
   financeAmount.textContent = `${amount.toLocaleString()} руб.`;
 });
 
@@ -61,11 +45,6 @@ const openReport = () => {
   document.addEventListener("click", closeReport);
 };
 
-const reformatDate = (dateStr) => {
-  const [year, month, day] = dateStr.split("-");
-  return `${day.padStart(2, "0")}.${month.padStart(2, "0")}.${year}`;
-};
-
 const renderReport = (data) => {
   reportOperationList.textContent = "";
   const reportRows = data.map(
@@ -73,15 +52,15 @@ const renderReport = (data) => {
       const reportRow = document.createElement("tr");
       reportRow.classList.add("report__row");
       reportRow.innerHTML = `
-                <td class="report__cell">${category}</td>
-                <td class="report__cell" style="text-align: right">${amount.toLocaleString()} р.</td>
-                <td class="report__cell">${description}</td>
-                <td class="report__cell">${reformatDate(date)}</td>
-                <td class="report__cell">${typesOperation[type]}</td>
-                <td class="report__action-cell">
-                  <button
-                    class="report__button report__button_table">&#10006;</button>
-                </td>
+        <td class="report__cell">${category}</td>
+        <td class="report__cell" style="text-align: right">${amount.toLocaleString()} р.</td>
+        <td class="report__cell">${description}</td>
+        <td class="report__cell">${reformatDate(date)}</td>
+        <td class="report__cell">${typesOperation[type]}</td>
+        <td class="report__action-cell">
+          <button
+            class="report__button report__button_table">&#10006;</button>
+        </td>
     `;
       return reportRow;
     }
@@ -94,16 +73,6 @@ financeReport.addEventListener("click", async () => {
   const data = await getData("/test");
   renderReport(data);
 });
-
-// reportDates.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   const formData = Object.fromEntries(new FormData(reportDates));
-  
-// });
-
-
-
-
 
 reportDates.addEventListener("submit", async (e) => {
   e.preventDefault();

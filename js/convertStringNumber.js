@@ -7,15 +7,3 @@ export const convertStringNumber = (str) => {
     return false
   }
 }
-
-// financeReport.addEventListener("click", () => {
-//   report.classList.add("report__open");
-// document.addEventListener("click", ({ target }) => {
-//   if (
-//     target.closest(".report__close") ||
-//     (!target.closest(".report") && target !== financeReport)
-//   ) {
-//     report.classList.remove("report__open");
-//   }
-// });
-// });
